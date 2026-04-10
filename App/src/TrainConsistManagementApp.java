@@ -1,33 +1,43 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class TrainConsistManagementApp {
 
+    static class Bogie {
+        String name;
+        int capacity;
+
+        Bogie(String name, int capacity) {
+            this.name = name;
+            this.capacity = capacity;
+        }
+    }
     public static void main(String[] args) {
-        System.out.println("==================================");
-        System.out.println("UC2 - Add Passenger Bogies to Train");
-        System.out.println("==================================\n");
 
-        List<String> passengerBogies = new ArrayList<>();
+        System.out.println("=====================================");
+        System.out.println(" UC7 - Sort Bogies by Capacity");
+        System.out.println("=====================================\n");
 
-        passengerBogies.add("Sleeper");
-        passengerBogies.add("AC Chair");
-        passengerBogies.add("First Class");
+        List<Bogie> bogies = new ArrayList<>();
 
-        System.out.println("After Adding Bogies:");
-        System.out.println("Passenger Bogies : " + passengerBogies);
-        passengerBogies.remove("AC Chair");
+        bogies.add(new Bogie("Sleeper", 72));
+        bogies.add(new Bogie("AC Chair", 60));
+        bogies.add(new Bogie("First Class", 40));
+        System.out.println("Before Sorting:");
+        for (Bogie b : bogies) {
+            System.out.println(b.name + " -> " + b.capacity);
+        }
 
-        System.out.println("\nAfter Removing 'AC Chair':");
-        System.out.println("Passenger Bogies : " + passengerBogies);
+        bogies.sort(Comparator.comparingInt(b -> b.capacity));
 
-        System.out.println("\nChecking if 'Sleeper' exists:");
-        System.out.println("Contains Sleeper? : " + passengerBogies.contains("Sleeper"));
+        System.out.println("\nAfter Sorting (by capacity):");
+        for (Bogie b : bogies) {
+            System.out.println(b.name + " -> " + b.capacity);
+        }
 
-        System.out.println("\nFinal Train Passenger Consist:");
-        System.out.println(passengerBogies);
-        System.out.println("\nUC2 operations completed successfully...");
+        System.out.println("\nUC7 operations completed successfully...");
     }
 }
+
+
 
 
