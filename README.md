@@ -1,123 +1,125 @@
 
 
-Project Procedure – UC3: Track Unique Bogie IDs
+
+Project Procedure – UC5: Preserve Insertion Order of Bogies
 1. Continue the Project
-Using the existing Java project and class TrainConsistManagementApp.java, extend the application to enforce uniqueness of bogie IDs.
+Using the existing Java project and class TrainConsistManagementApp.java, extend the system to maintain both uniqueness and insertion order of bogies.
 
-2. Display UC3 Title
-Inside the main method, print the heading:
+2. Display UC5 Title
+Inside the main method, print:
 
 ==================================
-UC3 - Track Unique Bogie IDs
+UC5 - Preserve Insertion Order of Bogies
 ==================================
-This indicates that the system is now validating uniqueness of bogie identifiers.
+This indicates that the system now focuses on ordered and unique train formation.
 
-3. Identify the Drawback of UC2
-In UC2, a List was used to store bogies.
+3. Identify the Need
+From previous use cases:
 
-Lists allow duplicate values
+HashSet (UC3) ensures uniqueness but does not maintain order
 
-Example issue:
+LinkedList (UC4) maintains order but allows duplicates
 
-BG101, BG101
-This can lead to:
+👉 We need a structure that:
 
-Invalid train composition
+Prevents duplicates
 
-Data inconsistency
+Preserves insertion order
 
-Safety risks
-
-4. Introduce Set for Uniqueness
-To solve this problem:
+4. Introduce LinkedHashSet
+To achieve both goals:
 
 Use the Set interface
 
-Use HashSet implementation
+Use LinkedHashSet implementation
 
-Set<String> bogies = new HashSet<>();
-A HashSet automatically ensures that all elements are unique.
+Set<String> formation = new LinkedHashSet<>();
+LinkedHashSet combines:
 
-5. Add Bogie IDs (Including Duplicates)
-Insert bogie IDs using the .add() method:
+Hashing (for uniqueness)
 
-bogies.add("BG101");
-bogies.add("BG102");
-bogies.add("BG103");
-bogies.add("BG104");
-bogies.add("BG101"); // Duplicate
-bogies.add("BG102"); // Duplicate
-6. Observe Automatic Deduplication
-When duplicates are added:
+Linked list (for order preservation)
 
-HashSet ignores duplicate entries automatically
+5. Add Bogies
+Insert bogies using .add():
 
-No error is thrown
+formation.add("Engine");
+formation.add("Sleeper");
+formation.add("Cargo");
+formation.add("Guard");
+6. Add Duplicate Entry
+Intentionally add a duplicate:
 
-Only unique values are stored internally
+formation.add("Sleeper"); // Duplicate
+7. Observe Behavior
+Duplicate entry is ignored automatically
 
-7. Display Bogie IDs
-Print the set:
+Original insertion order is preserved
 
-Bogie IDs After Insertion:
-[BG101, BG102, BG103, BG104]
-(Note: Order may vary because HashSet is unordered.)
-
-8. Display Informational Note
-Duplicates are automatically ignored by HashSet.
-9. Completion Message
-UC3 uniqueness validation completed...
+8. Display Final Train Formation
+Final Train Formation:
+[Engine, Sleeper, Cargo, Guard]
+9. Display Informational Note
+LinkedHashSet preserves insertion order and removes duplicates automatically.
+10. Completion Message
+UC5 formation setup completed...
 Actor & Flow
 Actor: User
 
 Flow:
 
-User adds bogie IDs
+User adds bogie names
 
-System inserts them into HashSet
+System inserts them into LinkedHashSet
 
-Duplicate values are ignored automatically
+Duplicate entries are ignored
 
-Unique bogie IDs are displayed
+Insertion order is preserved
 
-Key Concepts Used in UC3
-Set Interface – Collection that does not allow duplicates
+Final formation is displayed
 
-HashSet Class – Implements Set using hashing
+Key Concepts Used in UC5
+Set Interface – Ensures no duplicate elements
 
-add() Method – Adds elements to the set
+LinkedHashSet Class – Maintains insertion order
 
-Automatic Deduplication – No manual checking required
+add() Method – Inserts elements
 
-Unordered Storage – Elements are not stored by index
+Automatic Deduplication – No manual validation required
+
+Order Preservation – Maintains sequence of insertion
 
 Key Requirements
-Create a HashSet<String> for bogie IDs
+Create a LinkedHashSet<String> for train formation
 
-Add duplicate values intentionally
+Add bogies: Engine, Sleeper, Cargo, Guard
 
-Print the final set
+Add duplicate value intentionally
 
-Verify that duplicates are removed automatically
+Print final formation
+
+Verify:
+
+No duplicates
+
+Order is preserved
 
 Key Benefits
-Enforces business constraints (unique bogie IDs)
+Combines uniqueness + order preservation
 
-Prevents data corruption and duplication errors
+Prevents duplicate bogie entries
 
-Demonstrates when to use Set instead of List
+Maintains realistic train sequence
 
-Introduces real-world validation logic in railway systems
+Demonstrates when to use LinkedHashSet over HashSet and List
 
-Outcome of UC3
+Outcome of UC5
 After completing this procedure:
 
-Only unique bogie IDs are stored in the system
+Train formation maintains unique bogies only
+
+Original insertion sequence is retained
 
 Duplicate entries are automatically eliminated
 
-The train consist becomes more reliable and error-free
-
-The application demonstrates effective use of HashSet for uniqueness enforcement
-
-
+The application demonstrates effective use of LinkedHashSet for ordered and unique data management
