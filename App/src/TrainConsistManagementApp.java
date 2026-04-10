@@ -1,7 +1,4 @@
 
-MONALISA BHATTACHARJEE (RA2411003010204) <mb0951@srmist.edu.in>
-        4:25 PM (3 minutes ago)
-to SHATABDI
 
 import java.util.*;
         import java.util.stream.Collectors;
