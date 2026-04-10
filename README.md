@@ -1,123 +1,115 @@
 
 
-Project Procedure – UC3: Track Unique Bogie IDs
+
+Project Procedure – UC6: Map Bogie to Capacity (HashMap)
 1. Continue the Project
-Using the existing Java project and class TrainConsistManagementApp.java, extend the application to enforce uniqueness of bogie IDs.
+Using the existing Java project and class TrainConsistManagementApp.java, extend the system to associate each bogie with its seating or load capacity.
 
-2. Display UC3 Title
-Inside the main method, print the heading:
+2. Display UC6 Title
+Inside the main method, print:
 
 ==================================
-UC3 - Track Unique Bogie IDs
+UC6 - Map Bogie to Capacity (HashMap)
 ==================================
-This indicates that the system is now validating uniqueness of bogie identifiers.
+This indicates that the system is now handling bogie attributes using key–value mapping.
 
-3. Identify the Drawback of UC2
-In UC2, a List was used to store bogies.
+3. Introduce HashMap
+To map bogies with their capacities:
 
-Lists allow duplicate values
+Use the Map interface
 
-Example issue:
+Use HashMap implementation
 
-BG101, BG101
-This can lead to:
+Map<String, Integer> capacityMap = new HashMap<>();
+This structure stores:
 
-Invalid train composition
+Key → Bogie Name
 
-Data inconsistency
+Value → Capacity
 
-Safety risks
+4. Add Bogie-Capacity Mapping
+Insert values using the .put() method:
 
-4. Introduce Set for Uniqueness
-To solve this problem:
+capacityMap.put("First Class", 24);
+capacityMap.put("Cargo", 120);
+capacityMap.put("Sleeper", 72);
+capacityMap.put("AC Chair", 56);
+5. Display Heading
+Bogie Capacity Details:
+6. Iterate Using entrySet()
+Loop through the map to access both key and value:
 
-Use the Set interface
+for (Map.Entry<String, Integer> entry : capacityMap.entrySet()) {
+    System.out.println(entry.getKey() + " -> " + entry.getValue());
+}
+7. Display Output
+First Class -> 24
+Cargo -> 120
+Sleeper -> 72
+AC Chair -> 56
+(Note: Order may vary since HashMap is unordered.)
 
-Use HashSet implementation
-
-Set<String> bogies = new HashSet<>();
-A HashSet automatically ensures that all elements are unique.
-
-5. Add Bogie IDs (Including Duplicates)
-Insert bogie IDs using the .add() method:
-
-bogies.add("BG101");
-bogies.add("BG102");
-bogies.add("BG103");
-bogies.add("BG104");
-bogies.add("BG101"); // Duplicate
-bogies.add("BG102"); // Duplicate
-6. Observe Automatic Deduplication
-When duplicates are added:
-
-HashSet ignores duplicate entries automatically
-
-No error is thrown
-
-Only unique values are stored internally
-
-7. Display Bogie IDs
-Print the set:
-
-Bogie IDs After Insertion:
-[BG101, BG102, BG103, BG104]
-(Note: Order may vary because HashSet is unordered.)
-
-8. Display Informational Note
-Duplicates are automatically ignored by HashSet.
-9. Completion Message
-UC3 uniqueness validation completed...
+8. Completion Message
+UC6 bogie-capacity mapping completed...
 Actor & Flow
 Actor: User
 
 Flow:
 
-User adds bogie IDs
+User creates bogie-capacity mapping
 
-System inserts them into HashSet
+System stores data in HashMap
 
-Duplicate values are ignored automatically
+Key–value pairs are inserted using put()
 
-Unique bogie IDs are displayed
+System iterates using entrySet()
 
-Key Concepts Used in UC3
-Set Interface – Collection that does not allow duplicates
+Bogie capacities are displayed
 
-HashSet Class – Implements Set using hashing
+Program continues
 
-add() Method – Adds elements to the set
+Key Concepts Used in UC6
+Map Interface – Stores key–value relationships
 
-Automatic Deduplication – No manual checking required
+HashMap Class – Efficient key-based storage using hashing
 
-Unordered Storage – Elements are not stored by index
+put() Method – Inserts mappings
+
+Key–Value Association – Links bogie to its capacity
+
+entrySet() Iteration – Access both key and value together
+
+Fast Lookup – Retrieve capacity using bogie name
 
 Key Requirements
-Create a HashSet<String> for bogie IDs
+Create a HashMap<String, Integer>
 
-Add duplicate values intentionally
+Insert bogie capacities (Sleeper, AC Chair, First Class, Cargo)
 
-Print the final set
+Use put() for mapping
 
-Verify that duplicates are removed automatically
+Iterate using entrySet()
+
+Display bogie and capacity
 
 Key Benefits
-Enforces business constraints (unique bogie IDs)
+Models real-world attribute mapping
 
-Prevents data corruption and duplication errors
+Introduces key–value data structures
 
-Demonstrates when to use Set instead of List
+Enables fast lookup and validation
 
-Introduces real-world validation logic in railway systems
+Builds foundation for data-driven applications
 
-Outcome of UC3
+Prepares for advanced analytics and planning systems
+
+Outcome of UC6
 After completing this procedure:
 
-Only unique bogie IDs are stored in the system
+Each bogie is successfully mapped to its capacity
 
-Duplicate entries are automatically eliminated
+Data is stored in an efficient key–value structure
 
-The train consist becomes more reliable and error-free
+The system supports quick retrieval of bogie details
 
-The application demonstrates effective use of HashSet for uniqueness enforcement
-
-
+The application demonstrates effective use of HashMap for real-world data modeling
